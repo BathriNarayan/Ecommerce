@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Your Cart</title>
+<style>
+body{
+background:pink;
+}
+</style>
+</head>
+<body>
+    <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRy3BGmxFoEurV4LB-3eIb7lMQoPRaJhArWwKlC8GkxMN8BJKv-o2tgxPilc54famyjhlGENndNeL_g&usqp=CAc">
+    
+<h1>Your Order</h1>
+  
+<table id="checkout-cart" class="shopping-cart">
+
+<thead>
+
+<tr>
+
+<th scope="col">Item</th>
+
+<th scope="col">Qty:1</th>
+
+<th scope="col">Price:Rs: 9999</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+</tbody>
+
+</table>
+
+<div id="pricing">
+
+
+
+<strong>Shipping within 2 days</strong>: <span id="sshipping"></span>
+
+</p>
+
+<p id="sub-total">
+
+<strong>Total</strong>: <span id="stotal"></span>
+
+</p>
+
+</div>
+
+<div id="user-details">
+
+<h2>Your Data</h2>
+
+<div id="user-details-content"></div>
+
+</div>
+
+<form id="paypal-form" action="" method="post">
+
+<input type="hidden" name="cmd" value="_cart" />
+
+<input type="hidden" name="upload" value="1" />
+
+<input type="hidden" name="business" value="" />
+
+<input type="hidden" name="currency_code" value="" />
+
+<input type="submit" id="paypal-btn" class="btn" value="Add to cart" />
+
+</form>
+</body>
+</html>
