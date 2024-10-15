@@ -15,9 +15,10 @@ import java.util.*;
 @AllArgsConstructor
 public class Product
 {
+    //public Long getId;
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY)
-    private int id;
+    // @GeneratedValue( strategy = GenerationType.IDENTITY)
+    private long id;
     private String name;
     private int price;
     private int quantity;
@@ -26,5 +27,9 @@ public class Product
     private String model;
     private Boolean available;
     private Date releaseDate;
+
+    public long getId() {
+        return id;
+    }
 }
 

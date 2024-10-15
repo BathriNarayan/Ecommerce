@@ -16,4 +16,20 @@ public class ProductService {
     }
 
 
+    public Product getProductById(long id) {
+        return repo.findById(id).get();
+    }
+
+    public Product addProduct(Product product1) {
+        return repo.save( product1);
+    }
+
+    public Boolean findProductExists(Product product)
+    {
+        if(repo.findById(product.getId()).isPresent()) {
+            return false;
+        }
+        else
+            return true;
+    }
 }
