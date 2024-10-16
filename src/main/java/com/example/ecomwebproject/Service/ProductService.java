@@ -5,6 +5,8 @@ import com.example.ecomwebproject.Model.Product;
 import com.example.ecomwebproject.Repo.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import java.io.IOException;
 
 @Service
 public class ProductService {
@@ -31,5 +33,15 @@ public class ProductService {
         }
         else
             return true;
+    }
+
+    public Product uploadImage(int productId, MultipartFile file) throws IOException {
+        Product product = repo.findById((long) productId).orElseThrow(() -> new RuntimeException("Product not found"));
+        product.setImage(file.getBytes());
+        return repo.save(product);
+    }
+    public Product updateProduct(Product product1) {
+        return repo.save( product1);
+
     }
 }
