@@ -16,73 +16,60 @@ import java.util.List;
 @RequestMapping("/api")
 public class ProductController {
     @Autowired
-    ProductService service ;
+    ProductService service;
 
     @RequestMapping("/products")
-    public List<Product> getProducts()
-    {
+    public List<Product> getProducts() {
         Product p1 = new Product();
         List<Product> products = service.getAllProducts();
-      // p1.addAttribute("products", products);
+        // p1.addAttribute("products", products);
         return service.getAllProducts();
     }
 
     @RequestMapping("/products/{id}")
-    public Product getProduct(@PathVariable int id)
-    {
+    public Product getProduct(@PathVariable int id) {
         return service.getProductById(id);
     }
 
     @PostMapping("/products/addProduct")
-    public ResponseEntity<String> postProduct(@RequestBody Product product1)
-    {
-        Boolean X= ProductExists(product1);
-        if(X) {
-             service.addProduct(product1);
+    public ResponseEntity<String> postProduct(@RequestBody Product product1) {
+        Boolean X = ProductExists(product1);
+        if (X) {
+            service.addProduct(product1);
             return ResponseEntity.status(HttpStatus.OK).body("Product " + product1.getName() + " has been created successfully");
-        }
-        else
+        } else
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Product already exists. Please use a different ID.");
 
     }
+
     @PutMapping("/products/updateProduct")
-    public ResponseEntity<String> updateProduct(@RequestBody Product product1)
-    {
-        Boolean X= ProductExists(product1);
-        if(X)
-        {
+    public ResponseEntity<String> updateProduct(@RequestBody Product product1) {
+        Boolean X = ProductExists(product1);
+        if (X) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Product does not exist . Please use a different ID.");
-        }
-        else{
+        } else {
             service.updateProduct(product1);
             return ResponseEntity.status(HttpStatus.OK).body("Product has been updated successfully");
         }
     }
 
 
-    public Boolean ProductExists(Product product)
-    {
+    public Boolean ProductExists(Product product) {
         return service.findProductExists(product);
 
     }
 
     @PostMapping("/products/{id}/uploadImage")
-    public ResponseEntity<String> uploadImage(@PathVariable int id, @RequestParam("file") MultipartFile file) {
+    public ResponseEntity<String> uploadImage(@PathVariable int id, @RequestParam("file") MultipartFile file)
+    {
         try {
             service.uploadImage(id, file);
             return ResponseEntity.status(HttpStatus.OK).body("Image uploaded successfully.");
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error uploading image.");
-        } catch (RuntimeException e) {
+        } catch (RuntimeException e)
+        {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
-    }
-
-
-
-
-
-
-
-
+    }q
 }
