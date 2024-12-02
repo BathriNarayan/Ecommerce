@@ -44,4 +44,10 @@ public class ProductService {
         return repo.save( product1);
 
     }
+
+    public byte[] getProductImage(int productId) {
+        Product product = repo.findById((long) productId).orElseThrow(() -> new RuntimeException("Product not found"));
+        return product.getImage();
+    }
+
 }

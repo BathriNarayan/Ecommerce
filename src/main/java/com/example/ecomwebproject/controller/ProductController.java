@@ -3,6 +3,7 @@ package com.example.ecomwebproject.controller;
 
 import com.example.ecomwebproject.Model.Product;
 import com.example.ecomwebproject.Service.ProductService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -71,5 +72,15 @@ public class ProductController {
         {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
-    }q
+    }
+
+    @GetMapping("/products/{id}/image")
+    public void getImage(@PathVariable int id, HttpServletResponse response) throws IOException {
+        byte[] image = service.getProductImage(id);
+
+        response.setContentType("image/png");
+        response.getOutputStream().write(image);
+        response.getOutputStream().close();
+    }
+
 }
